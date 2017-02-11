@@ -1,69 +1,51 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
+" Make external commands work through a pipe instead of a pseudo-tty
+"set noguipty
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
-
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-"syntax on
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" You can also specify a different font, overriding the default font
+"if has('gui_gtk2')
+"  set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
+"else
+"  set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 "endif
 
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-"if has("autocmd")
-"  filetype plugin indent on
-"endif
-
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
-"set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
+" If you want to run gvim with a dark background, try using a different
+" colorscheme or running 'gvim -reverse'.
+" http://www.cs.cmu.edu/~maverick/VimColorSchemeTest/ has examples and
+" downloads for the colorschemes on vim.org
 
 " Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+if filereadable("/etc/vim/gvimrc.local")
+  source /etc/vim/gvimrc.local
 endif
 
-" displays number line
-set number
+" highlighting syntax
+syntax on
  
-" sets color scheme to dark
-colorscheme evening
+" sets dark color scheme
+" link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
+colorscheme nord " *Theme is not default*
 
-" loads config file that makes ctrl + c ; ctrl + v works
-so $VIMRUNTIME/mswin.vim
+" loads vim confgi that makes ctrl + c ; ctrl + v works
+so $VIMRUNTIME/mswin.vim 
 
 " makes the text selection works like in MS WIN
-behave mswin 
+behave mswin
 
-" highlights syntax
-syntax on 
+" displaying line numbers
+set number 
 
 " makes the tab to be 4 space equal
-set expandtab shiftwidth=4 softtabstop=4
+set expandtab shiftwidth=4 softtabstop=4 
+
+" sets initial size of gvim window
+set lines=35 columns=90
+
+" sets font size and style
+set guifont=consolas:h12
+
+" making vim to autoindenting lines after enter
+set autoindent
+set cindent
+
+" after openning bracket vim adds closing one and enter between
+inoremap { {<CR>}<up><end><CR>

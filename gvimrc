@@ -22,7 +22,8 @@ endif
 syntax on
  
 " sets dark color scheme
-colorscheme evening 
+" link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
+colorscheme nord " *Theme is not default*
 
 " loads vim confgi that makes ctrl + c ; ctrl + v works
 so $VIMRUNTIME/mswin.vim 
@@ -38,3 +39,13 @@ set expandtab shiftwidth=4 softtabstop=4
 
 " sets initial size of gvim window
 set lines=35 columns=90
+
+" sets font size and style
+set guifont=consolas:h12
+
+" making vim to autoindenting lines after enter
+set autoindent
+set cindent
+
+" after openning bracket vim adds closing one and enter between
+inoremap { {<CR>}<up><end><CR>
