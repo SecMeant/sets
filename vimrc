@@ -23,7 +23,9 @@ syntax on
  
 " sets dark color scheme
 " link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
-colorscheme nord " *Theme is not default*
+if filereadable("/etc/vim/gvimrc.local")
+    colorscheme nord " *Theme is not default*
+endif
 
 " loads vim confgi that makes ctrl + c ; ctrl + v works
 so $VIMRUNTIME/mswin.vim 
@@ -41,7 +43,8 @@ set expandtab shiftwidth=4 softtabstop=4
 set lines=35 columns=90
 
 " sets font size and style
-set guifont=consolas:h12
+" set guifont=consolas:h12 " Windows
+set guifont=Monospace " Linux
 
 " making vim to autoindenting lines after enter
 set autoindent
