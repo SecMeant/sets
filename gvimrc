@@ -23,9 +23,11 @@ syntax on
  
 " sets dark color scheme
 " link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
-if filereadable("/etc/vim/gvimrc.local")
-    colorscheme nord " *Theme is not default*
-endif
+colorscheme nord " *Theme is not default*
+
+"if filereadable("/etc/vim/gvimrc.local") " Linux
+"   colorscheme nord " *Theme is not default*
+"endif
 
 " loads vim confgi that makes ctrl + c ; ctrl + v works
 so $VIMRUNTIME/mswin.vim 
@@ -43,8 +45,11 @@ set expandtab shiftwidth=4 softtabstop=4
 set lines=35 columns=90
 
 " sets font size and style
-" set guifont=consolas:h12 " Windows
-set guifont=Monospace " Linux
+ set guifont=Consolas:h12:cEASTEUROPE " Windows
+"set guifont=Monospace " Linux
+
+" adds proper encoding for latin chars
+set encoding=utf-8
 
 " making vim to autoindenting lines after enter
 set autoindent
@@ -52,3 +57,11 @@ set cindent
 
 " after openning bracket vim adds closing one and enter between
 inoremap { {<CR>}<up><end><CR>
+
+" making vim to make files in constant directory
+" without this git is adding some tmp files that appears when 
+" vim opens file
+
+set swapfile
+" set dir=%HOMEPATH%\vimtmp " windows
+set dir=~/tmp
