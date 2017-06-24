@@ -42,10 +42,10 @@ set number
 set expandtab shiftwidth=4 softtabstop=4 
 
 " sets initial size of gvim window
-set lines=35 columns=90
+set lines=65 columns=140
 
 " sets font size and style
- set guifont=Consolas:h12:cEASTEUROPE " Windows
+ set guifont=Consolas:h8:cEASTEUROPE " Windows
 "set guifont=Monospace " Linux
 
 " adds proper encoding for latin chars
@@ -56,12 +56,12 @@ set autoindent
 set cindent
 
 " after openning bracket vim adds closing one and enter between
-inoremap { {<CR>}<up><end><CR>
-
-" making vim to make files in constant directory
-" without this git is adding some tmp files that appears when 
-" vim opens file
+inoremap { {}<left>
+" same like the bracket but with pranthesis
+inoremap ( ()<left>
+" same like above
+inoremap [ []<left>
 
 set swapfile
-" set dir=%HOMEPATH%\vimtmp " windows
-set dir=~/tmp
+set dor=~/tmp " Linux
+" set dir=%HOMEPATH%\vimtmp " Windows
