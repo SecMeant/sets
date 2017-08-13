@@ -22,8 +22,7 @@ endif
 syntax on
  
 " sets dark color scheme
-" link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
-colorscheme nord " *Theme is not default*
+colorscheme monokai 
 
 "if filereadable("/etc/vim/gvimrc.local") " Linux
 "   colorscheme nord " *Theme is not default*
@@ -39,7 +38,7 @@ behave mswin
 set number 
 
 " makes the tab to be 4 space equal
-set expandtab shiftwidth=4 softtabstop=4 
+set noexpandtab shiftwidth=4 tabstop=4 
 
 " sets initial size of gvim window
 set lines=65 columns=140
@@ -63,5 +62,5 @@ inoremap ( ()<left>
 inoremap [ []<left>
 
 set swapfile
-set dor=~/tmp " Linux
-" set dir=%HOMEPATH%\vimtmp " Windows
+" set dir=~/tmp " Linux
+set dir=%HOMEPATH%\vimtmp
