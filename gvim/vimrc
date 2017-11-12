@@ -22,8 +22,29 @@ endif
 syntax on
  
 " sets dark color scheme
-" link :https://github.com/arcticicestudio/nord-vim/blob/develop/colors/nord.vim
-colorscheme nord " *Theme is not default*
+if has("unix")
+	if filereadable('$HOME/vimfiles/colors/spring-night.vim')
+		colorscheme spring-night
+	elseif filereadable('$HOME/vimfiles/colors/monokai-phoenix.vim')
+		colorscheme monokai-phoenix
+	elseif filereadable('$HOME/vimfiles/colors/monokai.vim')
+		colorscheme monokai
+	else
+		echo "U dont have cool colors ;("
+		colorscheme darkblue
+	endif
+elseif has('win32') || has('win64')
+	if filereadable(expand("$HOME\\vimfiles\\colors\\spring-night.vim"))
+		colorscheme spring-night
+	elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai-phoenix.vim"))
+		colorscheme monokai-phoenix
+	elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai.vim"))
+		colorscheme monokai
+	else
+		echo "U dont have cool colors ;("
+		colorscheme darkblue
+	endif
+endif
 
 "if filereadable("/etc/vim/gvimrc.local") " Linux
 "   colorscheme nord " *Theme is not default*
@@ -36,17 +57,21 @@ so $VIMRUNTIME/mswin.vim
 behave mswin
 
 " displaying line numbers
-set number 
+set number
+set relativenumber 
 
-" makes the tab to be 4 space equal
-set expandtab shiftwidth=4 softtabstop=4 
+" makes the tab to be 2 space equal
+set noexpandtab shiftwidth=2 tabstop=2 
 
 " sets initial size of gvim window
 set lines=65 columns=140
 
 " sets font size and style
- set guifont=Consolas:h8:cEASTEUROPE " Windows
-"set guifont=Monospace " Linux
+if has('win32')|| has('win64')
+	set guifont=Consolas:h8:cEASTEUROPE " Windows
+elseif has('unix')
+	set guifont=Monospace " Linux
+endif
 
 " adds proper encoding for latin chars
 set encoding=utf-8
@@ -62,6 +87,48 @@ inoremap ( ()<left>
 " same like above
 inoremap [ []<left>
 
+" removes jump over wrapped line
+" normal mode
+nnoremap <Up> gk
+nnoremap <Down> gj
+
+nnoremap k gk
+nnoremap j gj
+
+" insert mode
+inoremap <C-k> <C-o>gk
+inoremap <C-j> <C-o>gj
+
+inoremap <Up> <C-o>gk
+inoremap <Down> <C-o>gj
+
 set swapfile
-set dor=~/tmp " Linux
-" set dir=%HOMEPATH%\vimtmp " Windows
+if has('win32') || has('win64')
+	set dir=%HOMEPATH%\vimtmp
+elseif has('unix')
+	set dir=~/vimtmp
+endif
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+" highlight search terms
+set hlsearch
+
+" show search matches as you type
+set incsearch
+
+" shows matching parenthesis
+set showmatch
+
+" dont beep
+set belloff=all
+
+" paste mode for vim
+set pastetoggle=<F2>
+
+" autoload NERDTree
+autocmd vimenter * NERDTree
+
+" binding toggle nerdtree to F3 button
+nmap <F3> :NERDTreeToggle<CR>
