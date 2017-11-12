@@ -22,27 +22,33 @@ endif
 syntax on
  
 " sets dark color scheme
-if has("unix")
-	if filereadable('$HOME/vimfiles/colors/spring-night.vim')
-		colorscheme spring-night
-	elseif filereadable('$HOME/vimfiles/colors/monokai-phoenix.vim')
-		colorscheme monokai-phoenix
-	elseif filereadable('$HOME/vimfiles/colors/monokai.vim')
-		colorscheme monokai
-	else
-		echo "U dont have cool colors ;("
-		colorscheme darkblue
-	endif
-elseif has('win32') || has('win64')
-	if filereadable(expand("$HOME\\vimfiles\\colors\\spring-night.vim"))
-		colorscheme spring-night
-	elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai-phoenix.vim"))
-		colorscheme monokai-phoenix
-	elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai.vim"))
-		colorscheme monokai
-	else
-		echo "U dont have cool colors ;("
-		colorscheme darkblue
+if has('gui_running')
+	if has("unix")
+		if filereadable(expand("$HOME/vimfiles/colors/vim-material.vim"))
+			colorscheme vim-material
+		elseif filereadable('$HOME/vimfiles/colors/spring-night.vim')
+			colorscheme spring-night
+		elseif filereadable('$HOME/vimfiles/colors/monokai-phoenix.vim')
+			colorscheme monokai-phoenix
+		elseif filereadable('$HOME/vimfiles/colors/monokai.vim')
+			colorscheme monokai
+		else
+			echo "U dont have cool colors ;("
+			colorscheme darkblue
+		endif
+	elseif has('win32') || has('win64')
+		if filereadable(expand("$HOME\\vimfiles\colors\\vim-material.vim"))
+			colorscheme vim-material
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\spring-night.vim"))
+			colorscheme spring-night
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai-phoenix.vim"))
+			colorscheme monokai-phoenix
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai.vim"))
+			colorscheme monokai
+		else
+			echo "U dont have cool colors ;("
+			colorscheme darkblue
+		endif
 	endif
 endif
 
