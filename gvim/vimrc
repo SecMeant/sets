@@ -66,6 +66,10 @@ behave mswin
 set number
 set relativenumber 
 
+" Binds toggle for relative number to F2 button
+map <F2> :set relativenumber!<CR>
+
+
 " makes the tab to be 2 space equal
 set noexpandtab shiftwidth=2 tabstop=2 
 
@@ -104,6 +108,16 @@ nnoremap j gj
 " insert mode
 inoremap <C-k> <C-o>gk
 inoremap <C-j> <C-o>gj
+
+" cursor moves 10 lines at once when 
+" holding ctrl
+"* <C-o> is required
+inoremap <C-Up> <C-o>10gk
+inoremap <C-Down> <C-o>10gj
+
+" Same as above but for normal mode 
+nnoremap <C-Up> 10gk
+nnoremap <C-Down> 10gj
 
 set swapfile
 if has('win32') || has('win64')
