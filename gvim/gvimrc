@@ -69,7 +69,6 @@ set relativenumber
 " Binds toggle for relative number to F2 button
 map <F2> :set relativenumber!<CR>
 
-
 " makes the tab to be 2 space equal
 set noexpandtab shiftwidth=2 tabstop=2 
 
