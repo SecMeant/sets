@@ -118,6 +118,11 @@ inoremap <C-Down> <C-o>10gj
 nnoremap <C-Up> 10gk
 nnoremap <C-Down> 10gj
 
+" ingore case for normal searches
+" case sensitive when all uppercase
+set ignorecase
+set smartcase
+
 set swapfile
 if has('win32') || has('win64')
 	set dir=%HOMEPATH%\vimtmp
