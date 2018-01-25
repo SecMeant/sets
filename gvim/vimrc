@@ -90,11 +90,20 @@ set autoindent
 set cindent
 
 " after openning bracket vim adds closing one and enter between
-inoremap { {}<left>
+" if tapped twice only one is opened
+inoremap {      {}<Left>
+inoremap {{     {
+
+inoremap {<CR>  {<CR>}<Esc>
+inoremap {}     {}
+
 " same like the bracket but with pranthesis
-inoremap ( ()<left>
+inoremap (      ()<left>
+inoremap ((     (
+
 " same like above
 inoremap [ []<left>
+inoremap [[     [
 
 " removes jump over wrapped line
 " normal mode
