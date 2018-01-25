@@ -23,6 +23,14 @@ syntax on
  
 " sets dark color scheme
 if has('gui_running')
+	" removes off tool and menu bars
+	set guioptions -=m
+	set guioptions -=T
+
+	" removes scrolls
+	set guioptions -=r
+	set guioptions -=L
+
 	if has("unix")
 		if filereadable(expand("$HOME/vimfiles/colors/thaumaturge.vim"))
 			colorscheme thaumaturge
