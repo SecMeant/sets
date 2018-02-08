@@ -32,7 +32,9 @@ if has('gui_running')
 	set guioptions -=L
 
 	if has("unix")
-		if filereadable(expand("$HOME/vimfiles/colors/thaumaturge.vim"))
+		if filereadable(expand("$HOME/vimfiles/colors/torte.vim"))
+			colorscheme torte
+		elseif filereadable(expand("$HOME/vimfiles/colors/thaumaturge.vim"))
 			colorscheme thaumaturge
 		elseif filereadable(expand("$HOME/vimfiles/colors/vim-material.vim"))
 			colorscheme vim-material
@@ -47,7 +49,9 @@ if has('gui_running')
 			colorscheme darkblue
 		endif
 	elseif has('win32') || has('win64')
-		if filereadable(expand("$HOME\\vimfiles\\colors\\thaumaturge.vim"))
+		if filereadable(expand("$HOME\\vimfiles\\colors\\torte.vim"))
+			colorscheme torte
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\thaumaturge.vim"))
 			colorscheme thaumaturge
 		elseif filereadable(expand("$HOME\\vimfiles\\colors\\vim-material.vim"))
 			colorscheme vim-material
