@@ -147,6 +147,7 @@ set smartcase
 set swapfile
 if has('win32') || has('win64')
 	set dir=%HOMEPATH%\vimtmp
+	set belloff=all " dont beep
 elseif has('unix')
 	set dir=~/vimtmp
 endif
@@ -162,9 +163,6 @@ set incsearch
 
 " shows matching parenthesis
 set showmatch
-
-" dont beep
-set belloff=all
 
 " paste mode for vim
 set pastetoggle=<F2>
