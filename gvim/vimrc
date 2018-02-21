@@ -31,6 +31,9 @@ if has('gui_running')
 	set guioptions -=r
 	set guioptions -=L
 
+	" sets initial size of gvim window
+	set lines=65 columns=140
+
 	if has("unix")
 		if filereadable(expand("$HOME/vimfiles/colors/torte.vim"))
 			colorscheme torte
@@ -66,7 +69,11 @@ if has('gui_running')
 			colorscheme darkblue
 		endif
 	endif
-endif
+" Not gui
+else 
+	set bg=dark
+	colorscheme default
+endif " check gui
 
 " loads vim confgi that makes ctrl + c ; ctrl + v works
 so $VIMRUNTIME/mswin.vim 
@@ -84,12 +91,9 @@ map <F2> :set relativenumber!<CR>
 " makes the tab to be 2 space equal
 set noexpandtab shiftwidth=2 tabstop=2 
 
-" sets initial size of gvim window
-set lines=65 columns=140
-
 " sets font size and style
-if has('win32')|| has('win64')
-	set guifont=Consolas:h8:cEASTEUROPE " Windows
+if has('win32') || has('win64')
+	set guifont=Ubuntu_Mono:h10:b:cANSI:qDRAFT " Windows
 elseif has('unix')
 	set guifont=Monospace " Linux
 endif
@@ -106,7 +110,7 @@ set cindent
 inoremap {      {}<Left>
 inoremap {{     {
 
-inoremap {<CR>  {<CR>}<Esc>
+inoremap {<CR>  {<CR>}
 inoremap {}     {}
 
 " same like the bracket but with pranthesis
