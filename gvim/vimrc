@@ -35,17 +35,17 @@ if has('gui_running')
 	set lines=65 columns=140
 
 	if has("unix")
-		if filereadable(expand("$HOME/vimfiles/colors/torte.vim"))
+		if filereadable(expand("$HOME/.vim/colors/thaumaturge.vim"))
 			colorscheme torte
-		elseif filereadable(expand("$HOME/vimfiles/colors/thaumaturge.vim"))
+		elseif filereadable(expand("$HOME/.vim/colors/torte.vim"))
 			colorscheme thaumaturge
-		elseif filereadable(expand("$HOME/vimfiles/colors/vim-material.vim"))
+		elseif filereadable(expand("$HOME/.vim/colors/vim-material.vim"))
 			colorscheme vim-material
-		elseif filereadable('$HOME/vimfiles/colors/spring-night.vim')
+		elseif filereadable('$HOME/.vim/colors/spring-night.vim')
 			colorscheme spring-night
-		elseif filereadable('$HOME/vimfiles/colors/monokai-phoenix.vim')
+		elseif filereadable('$HOME/.vim/colors/monokai-phoenix.vim')
 			colorscheme monokai-phoenix
-		elseif filereadable('$HOME/vimfiles/colors/monokai.vim')
+		elseif filereadable('$HOME/.vim/colors/monokai.vim')
 			colorscheme monokai
 		else
 			echo "U dont have cool colors ;("
