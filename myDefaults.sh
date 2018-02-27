@@ -5,3 +5,4 @@ git clone https://github.com/secmeant/sets ./my_defaults/sets
 apt-get install g++
 cp -rf gvim $HOME/.vim
 cp $HOME/.vim/vimrc $HOME/.vimrc
+mkdir $HOME/vimtmp
