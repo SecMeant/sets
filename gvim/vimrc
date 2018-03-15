@@ -171,6 +171,9 @@ set showmatch
 " paste mode for vim
 set pastetoggle=<F2>
 
+" tab completitions in nice menu
+set wildmenu
+
 " autoload NERDTree
 " I dont actually like this option ;/
 " autocmd vimenter * NERDTree
