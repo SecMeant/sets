@@ -32,20 +32,20 @@ if has('gui_running')
 	set guioptions -=L
 
 	" sets initial size of gvim window
-	set lines=65 columns=140
+	set lines=25 columns=95
 
 	if has("unix")
-		if filereadable(expand("$HOME/vimfiles/colors/torte.vim"))
+		if filereadable(expand("$HOME/.vim/colors/thaumaturge.vim"))
 			colorscheme torte
-		elseif filereadable(expand("$HOME/vimfiles/colors/thaumaturge.vim"))
+		elseif filereadable(expand("$HOME/.vim/colors/torte.vim"))
 			colorscheme thaumaturge
-		elseif filereadable(expand("$HOME/vimfiles/colors/vim-material.vim"))
+		elseif filereadable(expand("$HOME/.vim/colors/vim-material.vim"))
 			colorscheme vim-material
-		elseif filereadable('$HOME/vimfiles/colors/spring-night.vim')
+		elseif filereadable('$HOME/.vim/colors/spring-night.vim')
 			colorscheme spring-night
-		elseif filereadable('$HOME/vimfiles/colors/monokai-phoenix.vim')
+		elseif filereadable('$HOME/.vim/colors/monokai-phoenix.vim')
 			colorscheme monokai-phoenix
-		elseif filereadable('$HOME/vimfiles/colors/monokai.vim')
+		elseif filereadable('$HOME/.vim/colors/monokai.vim')
 			colorscheme monokai
 		else
 			echo "U dont have cool colors ;("
@@ -93,7 +93,7 @@ set noexpandtab shiftwidth=2 tabstop=2
 
 " sets font size and style
 if has('win32') || has('win64')
-	set guifont=Ubuntu_Mono:h10:cANSI:qDRAFT " Windows
+	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT " Windows
 elseif has('unix')
 	set guifont=Monospace " Linux
 endif
@@ -110,7 +110,7 @@ set cindent
 inoremap {      {}<Left>
 inoremap {{     {
 
-inoremap {<CR>  {<CR>}<left>
+inoremap {<CR>  {<CR>}
 inoremap {}     {}
 
 " same like the bracket but with pranthesis
