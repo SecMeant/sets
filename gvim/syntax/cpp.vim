@@ -58,7 +58,6 @@ if exists('g:cpp_experimental_template_highlight') && g:cpp_experimental_templat
 	let s:needs_cppstructure_match += 2
 endif
 
-syn clear cppStructure
 if s:needs_cppstructure_match == 0
 	syn keyword cppStructure typename namespace template class
 elseif s:needs_cppstructure_match == 1

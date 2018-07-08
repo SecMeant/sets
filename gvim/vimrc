@@ -35,12 +35,14 @@ if has('gui_running')
 	set lines=25 columns=95
 
 	if has("unix")
-		if filereadable(expand("$HOME/.vim/colors/thaumaturge.vim"))
-			colorscheme torte
-		elseif filereadable(expand("$HOME/.vim/colors/torte.vim"))
-			colorscheme thaumaturge
-		elseif filereadable(expand("$HOME/.vim/C:\Program Files\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32\includecolors/vim-material.vim"))
+		if filereadable(expand("$HOME/.vim/colors/Iosvkem.vim"))
+			colorscheme Iosvkem
+		elseif filereadable(expand("$HOME/.vim/colors/vim-material.vim"))
 			colorscheme vim-material
+		elseif filereadable(expand("$HOME/.vim/colors/torte.vim"))
+			colorscheme torte
+		elseif filereadable(expand("$HOME/.vim/colors/thaumaturge.vim"))
+			colorscheme thaumaturge
 		elseif filereadable('$HOME/.vim/colors/spring-night.vim')
 			colorscheme spring-night
 		elseif filereadable('$HOME/.vim/colors/monokai-phoenix.vim')
@@ -52,12 +54,14 @@ if has('gui_running')
 			colorscheme darkblue
 		endif
 	elseif has('win32') || has('win64')
-		if filereadable(expand("$HOME\\vimfiles\\colors\\torte.vim"))
-			colorscheme torte
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\thaumaturge.vim"))
-			colorscheme thaumaturge
+		if filereadable(expand("$HOME\\vimfiles\\colors\\artesanal.vim"))
+			colorscheme artesanal
 		elseif filereadable(expand("$HOME\\vimfiles\\colors\\vim-material.vim"))
 			colorscheme vim-material
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\thaumaturge.vim"))
+			colorscheme thaumaturge
+		elseif filereadable(expand("$HOME\\vimfiles\\colors\\torte.vim"))
+			colorscheme torte
 		elseif filereadable(expand("$HOME\\vimfiles\\colors\\spring-night.vim"))
 			colorscheme spring-night
 		elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai-phoenix.vim"))
@@ -103,7 +107,6 @@ set encoding=utf-8
 
 " making vim to autoindenting lines after enter
 set autoindent
-set cindent
 
 " removes jump over wrapped line
 " normal mode
@@ -156,7 +159,6 @@ set showmatch
 " paste mode for vim
 set pastetoggle=<F2>
 
-" tab completitions in nice menu
 set wildmenu
 
 " autoload NERDTree
@@ -166,19 +168,6 @@ set wildmenu
 " binding toggle nerdtree to F3 button
 nmap <F3> :NERDTreeToggle<CR>
 
-inoremap <C-Space> <C-X><C-O>
-inoremap <C-@> <C-Space>
-
-function! CleverTab()
-	 if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-			return "\<Tab>"
-	 else
-			return "\<C-X>\<C-O>"
-	 endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
-" Makes path completition work relative to current files path
 autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
@@ -187,6 +176,3 @@ set statusline=%f\ -\ FileType:\ %y
 
 set tags=$HOME/vimfiles/tags/sfmltags
 set tags+=$HOME/vimfiles/tags/tags
-
-" Defines for syntax plugin
-let g:cpp_experimental_simple_template_highlight = 1
