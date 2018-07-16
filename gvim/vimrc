@@ -75,8 +75,8 @@ if has('gui_running')
 	endif
 " Not gui
 else 
-	set bg=dark
 	colorscheme default
+	set bg=dark
 endif " check gui
 
 " loads vim confgi that makes ctrl + c ; ctrl + v works
