@@ -21,8 +21,10 @@ if ! [[ $1 =~ $re  ]]; then
 	exit 3
 fi
 
-echo "Ok -- changing to 800MHz"
+echo "Ok -- changing to $1MHz"
 echo "Caution: value migth be rounded to nearest freq supported by cpu"
+
+echo $(lscpu | grep "CPU max")
 
 for i in `seq 0 $(($(grep -c ^processor /proc/cpuinfo)-1))`;
 do
