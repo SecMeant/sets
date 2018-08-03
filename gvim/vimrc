@@ -54,19 +54,19 @@ if has('gui_running')
 			colorscheme darkblue
 		endif
 	elseif has('win32') || has('win64')
-		if filereadable(expand("$HOME\\vimfiles\\colors\\artesanal.vim"))
+		if filereadable(expand("$HOME\\.vim\\colors\\artesanal.vim"))
 			colorscheme artesanal
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\vim-material.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\vim-material.vim"))
 			colorscheme vim-material
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\thaumaturge.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\thaumaturge.vim"))
 			colorscheme thaumaturge
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\torte.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\torte.vim"))
 			colorscheme torte
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\spring-night.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\spring-night.vim"))
 			colorscheme spring-night
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai-phoenix.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\monokai-phoenix.vim"))
 			colorscheme monokai-phoenix
-		elseif filereadable(expand("$HOME\\vimfiles\\colors\\monokai.vim"))
+		elseif filereadable(expand("$HOME\\.vim\\colors\\monokai.vim"))
 			colorscheme monokai
 		else
 			echo "U dont have cool colors ;("
@@ -180,5 +180,5 @@ autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 set laststatus=2
 set statusline=%f\ -\ FileType:\ %y
 
-set tags=$HOME/vimfiles/tags/sfmltags
-set tags+=$HOME/vimfiles/tags/tags
+set tags=$HOME/.vim/tags/sfmltags
+set tags+=$HOME/.vim/tags/tags
