@@ -147,7 +147,6 @@ elseif has('unix')
 endif
 
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 set completeopt=menuone,preview,noselect
 
 " highlight search terms
