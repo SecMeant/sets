@@ -34,44 +34,12 @@ if has('gui_running')
 	" sets initial size of gvim window
 	set lines=25 columns=95
 
+	colorscheme evening
+
 	if has("unix")
-		if filereadable(expand("$HOME/.vim/colors/Iosvkem.vim"))
-			colorscheme Iosvkem
-		elseif filereadable(expand("$HOME/.vim/colors/vim-material.vim"))
-			colorscheme vim-material
-		elseif filereadable(expand("$HOME/.vim/colors/torte.vim"))
-			colorscheme torte
-		elseif filereadable(expand("$HOME/.vim/colors/thaumaturge.vim"))
-			colorscheme thaumaturge
-		elseif filereadable('$HOME/.vim/colors/spring-night.vim')
-			colorscheme spring-night
-		elseif filereadable('$HOME/.vim/colors/monokai-phoenix.vim')
-			colorscheme monokai-phoenix
-		elseif filereadable('$HOME/.vim/colors/monokai.vim')
-			colorscheme monokai
-		else
-			echo "U dont have cool colors ;("
-			colorscheme darkblue
-		endif
+		let vimdir = ".vim"
 	elseif has('win32') || has('win64')
-		if filereadable(expand("$HOME\\.vim\\colors\\artesanal.vim"))
-			colorscheme artesanal
-		elseif filereadable(expand("$HOME\\.vim\\colors\\vim-material.vim"))
-			colorscheme vim-material
-		elseif filereadable(expand("$HOME\\.vim\\colors\\thaumaturge.vim"))
-			colorscheme thaumaturge
-		elseif filereadable(expand("$HOME\\.vim\\colors\\torte.vim"))
-			colorscheme torte
-		elseif filereadable(expand("$HOME\\.vim\\colors\\spring-night.vim"))
-			colorscheme spring-night
-		elseif filereadable(expand("$HOME\\.vim\\colors\\monokai-phoenix.vim"))
-			colorscheme monokai-phoenix
-		elseif filereadable(expand("$HOME\\.vim\\colors\\monokai.vim"))
-			colorscheme monokai
-		else
-			echo "U dont have cool colors ;("
-			colorscheme darkblue
-		endif
+		let vimdir = "vimfiles"
 	endif
 " Not gui
 else 
@@ -90,7 +58,6 @@ set number
 
 " Binds toggle for relative number to F2 button
 map <F2> :set relativenumber!<CR>
-
 
 " makes the tab to be 2 space equal
 set noexpandtab shiftwidth=2 tabstop=2 
@@ -179,5 +146,5 @@ autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 set laststatus=2
 set statusline=%f\ -\ FileType:\ %y
 
-set tags=$HOME/.vim/tags/sfmltags
-set tags+=$HOME/.vim/tags/tags
+let tags=$HOME . "/" . vimdir . "/" . "tags/tags"
+let &tags=expand(tags) " Fix slashes
