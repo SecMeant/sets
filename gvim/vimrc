@@ -34,7 +34,7 @@ if has('gui_running')
 	" sets initial size of gvim window
 	set lines=25 columns=95
 
-	colorscheme evening
+	colorscheme goodwolf 
 
 	if has("unix")
 		let vimdir = ".vim"
