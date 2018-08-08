@@ -20,6 +20,14 @@ endif
 
 " highlighting syntax
 syntax on
+
+colorscheme goodwolf 
+
+if has("unix")
+  let vimdir = ".vim"
+elseif has('win32') || has('win64')
+  let vimdir = "vimfiles"
+endif
  
 " sets dark color scheme
 if has('gui_running')
@@ -33,17 +41,8 @@ if has('gui_running')
 
 	" sets initial size of gvim window
 	set lines=25 columns=95
-
-	colorscheme goodwolf 
-
-	if has("unix")
-		let vimdir = ".vim"
-	elseif has('win32') || has('win64')
-		let vimdir = "vimfiles"
-	endif
 " Not gui
 else 
-	colorscheme default
 	set bg=dark
 endif " check gui
 
