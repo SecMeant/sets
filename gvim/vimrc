@@ -59,7 +59,7 @@ set number
 map <F2> :set relativenumber!<CR>
 
 " makes the tab to be 2 space equal
-set noexpandtab shiftwidth=2 tabstop=2 
+set expandtab shiftwidth=2 softtabstop=2 
 
 " sets font size and style
 if has('win32') || has('win64')
