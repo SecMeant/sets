@@ -1,0 +1,3 @@
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor -> Autorun REG_SZ = C:\doskey\autorun.cmd
+
+Computer\HKEY_CURRENT_USER\Software\Microsoft\Command Processor ^^^ same as above

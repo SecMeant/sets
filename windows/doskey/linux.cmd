@@ -4,6 +4,7 @@ doskey clear=cls $*
 doskey cp=copy $*
 doskey his=doskey /history
 doskey ls=dir $*
+doskey l=dir $*
 doskey mv=move $*
 doskey rm=del $*
 doskey c11=g++ -std=c++11 -Wall -Wextra $*
