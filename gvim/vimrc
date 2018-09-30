@@ -65,7 +65,7 @@ set expandtab shiftwidth=2 softtabstop=2
 if has('win32') || has('win64')
 	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT " Windows
 elseif has('unix')
-	set guifont=Monospace " Linux
+	set guifont=Ubuntu\ Mono" Linux
 endif
 
 " adds proper encoding for latin chars
@@ -98,6 +98,13 @@ nnoremap <C-Down> 10gj
 
 nnoremap <C-K> 10gk
 nnoremap <C-J> 10gj
+
+" Makes cursor to be block in every mode
+set guicursor=n-v-c-i:block-Cursor
+
+" Makes cursor dark grey and chars underneath steelblue
+highlight Cursor guifg=steelblue guibg=darkgrey
+highlight iCursor guifg=steelblue guibg=darkgrey
 
 " ingore case for normal searches
 " case sensitive when all uppercase
