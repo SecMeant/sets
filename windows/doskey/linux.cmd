@@ -7,6 +7,7 @@ doskey ls=dir $*
 doskey l=dir $*
 doskey mv=move $*
 doskey rm=del $*
+doskey pwd=cd
 doskey c11=g++ -std=c++11 -Wall -Wextra $*
 doskey c14=g++ -std=c++14 -Wall -Wextra $*
 doskey c17=g++ -std=c++17 -Wall -Wextra $*
