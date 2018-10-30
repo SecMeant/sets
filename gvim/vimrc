@@ -58,14 +58,11 @@ set number
 " Binds toggle for relative number to F2 button
 map <F2> :set relativenumber!<CR>
 
-" makes the tab to be 2 space equal
-set expandtab shiftwidth=2 softtabstop=2 
-
 " sets font size and style
 if has('win32') || has('win64')
 	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT " Windows
 elseif has('unix')
-	set guifont=Ubuntu\ Mono" Linux
+	set guifont=Monospace " Linux
 endif
 
 " adds proper encoding for latin chars
@@ -98,13 +95,6 @@ nnoremap <C-Down> 10gj
 
 nnoremap <C-K> 10gk
 nnoremap <C-J> 10gj
-
-" Makes cursor to be block in every mode
-set guicursor=n-v-c-i:block-Cursor
-
-" Makes cursor dark grey and chars underneath steelblue
-highlight Cursor guifg=steelblue guibg=darkgrey
-highlight iCursor guifg=steelblue guibg=darkgrey
 
 " ingore case for normal searches
 " case sensitive when all uppercase
@@ -154,3 +144,7 @@ set statusline=%f\ -\ FileType:\ %y
 
 let tags=$HOME . "/" . vimdir . "/" . "tags/tags"
 let &tags=expand(tags) " Fix slashes
+
+" Enables menu pop up on alt space
+nnoremap <M-Space> :simalt ~<CR>
+inoremap <M-Space> :simalt ~<CR>
