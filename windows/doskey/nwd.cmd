@@ -1,3 +1,3 @@
 @echo off
-cd C:\etc
+IF /I "%COMSPEC%"==%CMDCMDLINE% (cd C:\etc)
 @echo on
