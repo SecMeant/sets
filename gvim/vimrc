@@ -46,12 +46,6 @@ else
 	set bg=dark
 endif " check gui
 
-" loads vim confgi that makes ctrl + c ; ctrl + v works
-so $VIMRUNTIME/mswin.vim 
-
-" makes the text selection works like in MS WIN
-behave mswin
-
 " displaying line numbers
 set number
 
