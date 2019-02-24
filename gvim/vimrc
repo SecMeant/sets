@@ -1,22 +1,9 @@
-" Make external commands work through a pipe instead of a pseudo-tty
-"set noguipty
-
-" You can also specify a different font, overriding the default font
-"if has('gui_gtk2')
-"  set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-"else
-"  set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
-"endif
-
-" If you want to run gvim with a dark background, try using a different
-" colorscheme or running 'gvim -reverse'.
-" http://www.cs.cmu.edu/~maverick/VimColorSchemeTest/ has examples and
-" downloads for the colorschemes on vim.org
-
 " Source a global configuration file if available
 if filereadable("/etc/vim/gvimrc.local")
   source /etc/vim/gvimrc.local
 endif
+
+set nocompatible
 
 " highlighting syntax
 syntax on
@@ -45,12 +32,6 @@ if has('gui_running')
 else 
 	set bg=dark
 endif " check gui
-
-" loads vim confgi that makes ctrl + c ; ctrl + v works
-so $VIMRUNTIME/mswin.vim 
-
-" makes the text selection works like in MS WIN
-behave mswin
 
 " displaying line numbers
 set number
@@ -152,9 +133,11 @@ autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 set laststatus=2
 set statusline=%f\ -\ FileType:\ %y
 
-set tags=tags
+set tags=./tags;
 set path=.
 
 function! Gentags()
 	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
+
+let g:clang_library_path='/usr/lib/llvm-7/lib/libclang.so'
