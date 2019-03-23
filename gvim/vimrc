@@ -55,6 +55,9 @@ set encoding=utf-8
 " making vim to autoindenting lines after enter
 set autoindent
 
+" makes complete window simpler (not opening preview window)
+set completeopt=menuone,noselect
+
 " removes jump over wrapped line
 " normal mode
 nnoremap <Up> gk
