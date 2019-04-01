@@ -40,7 +40,7 @@ set number
 map <F2> :set relativenumber!<CR>
 
 " makes the tab to be 2 space equal
-set noexpandtab shiftwidth=2 softtabstop=2 tabstop=2
+set shiftwidth=2 softtabstop=2 tabstop=2
 
 " sets font size and style
 if has('win32') || has('win64')
@@ -54,9 +54,6 @@ set encoding=utf-8
 
 " making vim to autoindenting lines after enter
 set autoindent
-
-" makes complete window simpler (not opening preview window)
-set completeopt=menuone,noselect
 
 " removes jump over wrapped line
 " normal mode
@@ -144,3 +141,5 @@ function! Gentags()
 endfunction
 
 let g:clang_library_path='/usr/lib/llvm-7/lib/libclang.so'
+
+set list lcs=trail:\·,tab:\|\ 
