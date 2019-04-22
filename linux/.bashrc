@@ -56,11 +56,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\033[0;1m\u@\033[0;1m\h\[\033[0;37m\] > '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h > '
-fi
+PS1='${debian_chroot:+($debian_chroot)}\u@\h > '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -118,3 +114,11 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+export ORACLE_SID=XE
+export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+export ORACLE_BASE=/u01/app/oracle
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+export PATH=$ORACLE_HOME/bin:$PATH
+alias viv="USER_VIM_ENABLE_PLUGINS=Y vim"
