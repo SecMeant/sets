@@ -1,8 +1,10 @@
-sudo apt-get install vim-gtk
-sudo apt-get install git
-sudo apt-get install g++
-sudo apt-get install clang
-sudo apt-get install clang-format
+sudo apt-get install vim-gtk -y
+sudo apt-get install git -y
+sudo apt-get install g++ -y
+sudo apt-get install clang -y
+sudo apt-get install clang-format -y
+sudo apt-get install build-essential -y
+sudo apt-get install cmake -y
 
 if [[ "$(git remote show origin | head -n 2 | tail -n 1)" == *"https://github.com/secmeant/sets"* ]]; then
 	path_prefix="$(git rev-parse --show-toplevel)"
