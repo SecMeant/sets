@@ -116,3 +116,7 @@ if ! shopt -oq posix; then
 fi
 
 alias viv="USER_VIM_ENABLE_PLUGINS=Y vim"
+
+grepcsrc() {
+  grep $* $(find . -regextype gnu-awk -regex "(.*\.cc|.*\.h|.*\.cpp|.*\.hpp|.*\.cxx)")
+}
