@@ -1,21 +1,18 @@
 set nocompatible
 filetype off
 
-if $USER_VIM_ENABLE_PLUGINS == "Y"
-
+if $USER_VIM_ENABLE_PLUGINS == 'Y'
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
-
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
 
   Plugin 'Valloric/YouCompleteMe'
 
   call vundle#end()
+  filetype plugin indent on
 
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
 endif
-
-filetype plugin indent on
 
 " highlighting syntax
 syntax on
@@ -51,14 +48,11 @@ set number
 " Binds toggle for relative number to F2 button
 map <F2> :set relativenumber!<CR>
 
-" makes the tab to be 2 space equal
-set expandtab shiftwidth=2 softtabstop=2 tabstop=2
-
 " sets font size and style
 if has('win32') || has('win64')
 	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT " Windows
 elseif has('unix')
-	set guifont=Ubuntu\ Mono" Linux
+	set guifont=Ubuntu\ Mono\ 8 " Linux
 endif
 
 " adds proper encoding for latin chars
@@ -146,17 +140,25 @@ set laststatus=2
 set statusline=%f\ -\ FileType:\ %y
 
 set tags=./tags;
-set path=.
+set path=.;
 
 function! Gentags()
 	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-let g:ycm_use_clangd = 0
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+set statusline=%<%f%m\ \[%{&ff}:%{&fenc}:%Y]\ %=\ %l\/%L\ :\ %c%V
 
-nnoremap ygd :YcmCompleter GoToDefinition<CR>
-nnoremap ygi :YcmCompleter GoToInclude<CR>
-nnoremap ygf :YcmCompleter FixIt<CR>
+let g:ycm_use_clangd = 1
+let g:ycm_auto_trigger = 1
 
 set list lcs=trail:\·,tab:\|\ 
+
+nnoremap ygi :YcmCompleter GoToInclude<CR>
+nnoremap ygf :YcmCompleter FixIt<CR>
+nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap ygt :YcmCompleter GetType<CR>
+
+set secure
+set exrc
+
+au BufReadPost *.tex setlocal spell spelllang=pl
