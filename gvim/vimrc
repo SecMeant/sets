@@ -137,7 +137,7 @@ autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 set laststatus=2
-set statusline=%f\ -\ FileType:\ %y
+set statusline=%<%f%m\ \[%{&ff}:%{&fenc}:%Y]\ %=\ %l\/%L\ :\ %c%V
 
 set tags=./tags;
 set path=.;
@@ -146,10 +146,8 @@ function! Gentags()
 	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-set statusline=%<%f%m\ \[%{&ff}:%{&fenc}:%Y]\ %=\ %l\/%L\ :\ %c%V
-
 let g:ycm_use_clangd = 1
-let g:ycm_auto_trigger = 1
+let g:ycm_auto_trigger = 0
 
 set list lcs=trail:\·,tab:\|\ 
 
@@ -157,6 +155,16 @@ nnoremap ygi :YcmCompleter GoToInclude<CR>
 nnoremap ygf :YcmCompleter FixIt<CR>
 nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ygt :YcmCompleter GetType<CR>
+
+if executable("clang-format") == 1
+  nnoremap ff ggVG:!clang-format --style=file<CR>2<C-O>
+endif
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 set secure
 set exrc
