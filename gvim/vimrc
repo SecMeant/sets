@@ -6,6 +6,7 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   call vundle#begin()
 
   Plugin 'Valloric/YouCompleteMe'
+  Plugin 'scrooloose/nerdtree'
 
   call vundle#end()
   filetype plugin indent on
@@ -14,10 +15,9 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   Plugin 'VundleVim/Vundle.vim'
 endif
 
-" highlighting syntax
 syntax on
 
-colorscheme goodwolf 
+colorscheme goodwolf
 
 if has("unix")
   let vimdir = ".vim"
@@ -146,8 +146,10 @@ function! Gentags()
 	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-let g:ycm_use_clangd = 1
+let g:ycm_use_clangd = 0
 let g:ycm_auto_trigger = 0
+
+let g:asyncrun_open=0
 
 set list lcs=trail:\·,tab:\|\ 
 
@@ -170,3 +172,5 @@ set secure
 set exrc
 
 au BufReadPost *.tex setlocal spell spelllang=pl
+
+set linebreak
