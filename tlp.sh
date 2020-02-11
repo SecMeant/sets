@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ************************************************** #
-# True Low Power scirpt                              #
+# True Low Power script                              #
 # Sets max cpu clock freq to value given as argument #
 # ************************************************** #
 
