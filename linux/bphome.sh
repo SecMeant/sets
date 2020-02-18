@@ -20,7 +20,7 @@ taropt=""
 echo "Output file name: ${bpname}"
 
 echo -n "Calculating size of data to compress . . . "
-total_size=$(du -sb /home/${username} | cut -f 1)
+total_size=$(du --exclude-from=/home/${username}/.bpexclude -sb /home/${username} | cut -f 1)
 checkpoint=$(echo ${total_size}/50000 | bc)
 echo -e "${color_done}DONE${color_default}"
 
