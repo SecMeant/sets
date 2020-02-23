@@ -1,0 +1,10 @@
+#!/bin/bash
+pkill dunst
+dunst &
+
+notify-send "asdasd"
+notify-send "akjhsdjha"
+notify-send "askjdha"
+notify-send "asjdhakjs"
+notify-send -u critical "asdf"
+notify-send -u low "asdf"
