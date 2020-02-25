@@ -39,6 +39,7 @@ fi
 
 echo -n "Searching for mountpoits to exclude . . . "
 
+trap "rm -f ${bpexclude} ${tmpbpname}"
 truncate ${bpexclude} --size 0
 cp ${bpexclude_user} ${bpexclude} 2>/dev/null
 bptarget_escaped=$(echo ${bptarget} | sed 's/\//\\\//g;s/ /\\ /g')
