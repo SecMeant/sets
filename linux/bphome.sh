@@ -1,6 +1,9 @@
 #!/bin/bash
 # Backup home
 
+# $1 == directory which is backed-up, home dir if empty
+# $2 == backup output directory, /tmp by default and when done moved to pwd
+
 proper_ans="Yes, Im sure"
 echo -n "Are you sure? Type '${proper_ans}': "
 read ans
@@ -15,8 +18,11 @@ bpname="bph$(cat /etc/hostname)$(date +%d%m%Y)${$}.tar.gz"
 tmpbpname="/tmp/${bpname}"
 bpexclude_user="/home/${username}/.bpexclude"
 bpexclude="/tmp/bpexclude"
+bprepos="/home/${username}/repos"
+repofinder="/home/${username}/getrepos.sh"
 color_default="\033[0m"
 color_done="\033[0;32m"
+color_warn="\033[33m"
 taropt=""
 
 if [ "$1" != "" ]; then
@@ -37,18 +43,31 @@ if [ "${distro}" == "Arch" ]; then
 	comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base-devel | sort) > ~/.packages
 fi
 
-echo -n "Searching for mountpoits to exclude . . . "
-
 trap "rm -f ${bpexclude} ${tmpbpname}"
 truncate ${bpexclude} --size 0
 cp ${bpexclude_user} ${bpexclude} 2>/dev/null
+
+echo -n "Searching for mountpoits to exclude . . . "
+
 bptarget_escaped=$(echo ${bptarget} | sed 's/\//\\\//g;s/ /\\ /g')
-cut -f 2 -d " " /proc/mounts | sed "s/$/\/\*/; /${bptarget_escaped}\/.*/ !d" >> ${bpexclude}
+cut -f 2 -d " " /proc/mounts | sed "s/$/\/\*/; /${bptarget_escaped}/ !d" >> ${bpexclude}
 
 echo -e "${color_done}DONE${color_default}"
+
+echo -n "Searching for git repositories to exclude . . . "
+
+if [ -f "${repofinder}" ]; then
+	"${repofinder}" > "${bprepos}"
+	sed "s/\t.*$//;s/$/\/\*/;" "${bprepos}" >> "${bpexclude}"
+	echo -e "${color_done}DONE${color_default}"
+	echo -e "Found repos:"
+	sed "s/^/\t/" ${bprepos}
+else
+	echo -e "${color_warn}WARNING: ./getrepos.sh not found. Unable to search for repositories.${color_default}"
+fi
+
 echo -e "Excluded dirs:"
 sed "s/^/\t/" "${bpexclude}"
-
 
 echo -e "\nOutput file name: ${bpname}"
 
