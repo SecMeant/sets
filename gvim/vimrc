@@ -7,6 +7,7 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
 
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/nerdtree'
+  Plugin 'rust-lang/rust.vim'
 
   call vundle#end()
   filetype plugin indent on
@@ -15,6 +16,13 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   Plugin 'VundleVim/Vundle.vim'
 endif
 
+if $USER_VIM_LOAD_LOCAL_CFG == 'Y'
+  set exrc
+else
+  set secure
+endif
+
+filetype plugin on
 syntax on
 
 colorscheme goodwolf
@@ -24,8 +32,7 @@ if has("unix")
 elseif has('win32') || has('win64')
   let vimdir = "vimfiles"
 endif
- 
-" sets dark color scheme
+
 if has('gui_running')
 	" removes off tool and menu bars
 	set guioptions -=m
@@ -37,66 +44,51 @@ if has('gui_running')
 
 	" sets initial size of gvim window
 	set lines=25 columns=95
-" Not gui
 else 
 	set bg=dark
-endif " check gui
-
-" displaying line numbers
-set number
-
-" Binds toggle for relative number to F2 button
-map <F2> :set relativenumber!<CR>
-
-" sets font size and style
-if has('win32') || has('win64')
-	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT " Windows
-elseif has('unix')
-	set guifont=Ubuntu\ Mono\ 8 " Linux
 endif
 
-" adds proper encoding for latin chars
+set number
+map <F2> :set relativenumber!<CR>
+
+if has('win32') || has('win64')
+	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT
+elseif has('unix')
+	set guifont=Ubuntu\ Mono\ 8
+endif
+
 set encoding=utf-8
-
-" making vim to autoindenting lines after enter
 set autoindent
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set showmatch
+set wildmenu
+set linebreak
 
-" removes jump over wrapped line
-" normal mode
 nnoremap <Up> gk
 nnoremap <Down> gj
 
 nnoremap k gk
 nnoremap j gj
 
-" insert mode
-inoremap <C-k> <C-o>gk
-inoremap <C-j> <C-o>gj
-
-" cursor moves 10 lines at once when 
-" holding ctrl
-"* <C-o> is required
-inoremap <C-Up> <C-o>10gk
-inoremap <C-Down> <C-o>10gj
-
-" Same as above but for normal mode 
 nnoremap <C-Up> 10gk
 nnoremap <C-Down> 10gj
 
 nnoremap <C-K> 10gk
 nnoremap <C-J> 10gj
 
-" Makes cursor to be block in every mode
+inoremap <C-k> <C-o>gk
+inoremap <C-j> <C-o>gj
+
+inoremap <C-Up> <C-o>10gk
+inoremap <C-Down> <C-o>10gj
+
 set guicursor=n-v-c-i:block-Cursor
 
-" Makes cursor dark grey and chars underneath steelblue
 highlight Cursor guifg=steelblue guibg=darkgrey
 highlight iCursor guifg=steelblue guibg=darkgrey
-
-" ingore case for normal searches
-" case sensitive when all uppercase
-set ignorecase
-set smartcase
 
 set swapfile
 if has('win32') || has('win64')
@@ -106,35 +98,10 @@ elseif has('unix')
 	set dir=~/.vimtmp
 endif
 
-filetype plugin on
 set completeopt=menuone,preview,noselect
 
-" highlight search terms
-set hlsearch
-
-" show search matches as you type
-set incsearch
-
-" shows matching parenthesis
-set showmatch
-
-" paste mode for vim
-set pastetoggle=<F2>
-
-set wildmenu
-
-" tab completitions in nice menu
-" set wildmenu
-
-" autoload NERDTree
-" I dont actually like this option ;/
-" autocmd vimenter * NERDTree
-
-" binding toggle nerdtree to F3 button
-nmap <F3> :NERDTreeToggle<CR>
-
-autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+"autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+"autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 set laststatus=2
 set statusline=%<%f%m\ \[%{&ff}:%{&fenc}:%Y]\ %=\ %l\/%L\ :\ %c%V
@@ -146,31 +113,30 @@ function! Gentags()
 	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-let g:ycm_use_clangd = 0
+map ff :%!clang-format<CR>
+
+" YCM
 let g:ycm_auto_trigger = 0
-
-let g:asyncrun_open=0
-
-set list lcs=trail:\·,tab:\|\ 
-
+let g:ycm_use_clangd = 0
+"let g:ycm_clangd_uses_ycmd_caching = 0
+"let g:ycm_clangd_binary_path = exepath("clangd")
 nnoremap ygi :YcmCompleter GoToInclude<CR>
 nnoremap ygf :YcmCompleter FixIt<CR>
 nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ygt :YcmCompleter GetType<CR>
 
-if executable("clang-format") == 1
-  nnoremap ff ggVG:!clang-format --style=file<CR>2<C-O>
-endif
 
+let g:asyncrun_open = 0
+
+set list lcs=trail:\·,tab:\|\ 
+
+" Leave cursor line when leaving window
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
 
-set secure
-set exrc
-
-au BufReadPost *.tex setlocal spell spelllang=pl
-
-set linebreak
+" Set spell check for polish tex files
+"au BufReadPost *.tex setlocal spell spelllang=pl
+"
