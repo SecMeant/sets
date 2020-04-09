@@ -4,10 +4,10 @@
 
 case "$1" in
   "all")
-    search_path="$HOME/mp3/"
+    search_path="$DIR_MP3"
     ;;
   *)
-    search_path="$HOME/mp3/$1/"
+    search_path="$DIR_MP3/$1/"
     ;;
 esac
 
