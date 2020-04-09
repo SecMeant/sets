@@ -1,6 +1,7 @@
 #!/usr/bin/sh
 
 [ $# -ne 1 ] && exit 1 
+[ `basename "$0"` = "playg" ] || opt="-novideo"
 
 case "$1" in
   "all")
@@ -11,5 +12,5 @@ case "$1" in
     ;;
 esac
 
-files=$(find "$search_path" -type f) && select=$(dmenu -l 20 <<< $files) && mplayer "$select"
+files=$(find "$search_path" -type f) && select=$(dmenu -l 20 <<< $files) && mplayer $opt "$select"
 
