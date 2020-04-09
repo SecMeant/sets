@@ -6,11 +6,8 @@ case "$1" in
   "all")
     search_path="$HOME/mp3/"
     ;;
-  "bandmaid")
-    search_path="$HOME/mp3/bandmaid/"
-    ;;
   *)
-    exit 2
+    search_path="$HOME/mp3/$1/"
     ;;
 esac
 
