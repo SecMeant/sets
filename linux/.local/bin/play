@@ -12,5 +12,5 @@ case "$1" in
     ;;
 esac
 
-files=$(find "$search_path" -type f) && select=$(dmenu -l 20 <<< $files) && mplayer $opt "$select"
+files=$(find "$search_path" -type f) && select=$(dmenu -i -l 20 <<< $files) && mplayer $opt "$select"
 
