@@ -140,3 +140,14 @@ augroup END
 " Set spell check for polish tex files
 "au BufReadPost *.tex setlocal spell spelllang=pl
 "
+
+function StyleSpaces()
+  set expandtab
+  set tabstop=2
+  set softtabstop=2
+endfunction
+
+function StyleTabs()
+  set noexpandtab
+  set tabstop=8
+endfunction
