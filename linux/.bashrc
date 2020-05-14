@@ -27,14 +27,6 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -56,13 +48,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}\u@\h > '
+PS1='\u@\h > '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -86,22 +78,13 @@ fi
 # dirs yellow, exes green
 export LS_COLORS='di=01;93:ex=92'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.config/bash/aliases ]; then
+    . ~/.config/bash/aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -115,8 +98,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias viv="USER_VIM_ENABLE_PLUGINS=Y vim"
-
 grepcsrc() {
-  grep $* $(find . -regextype gnu-awk -regex "(.*\.cc|.*\.h|.*\.cpp|.*\.hpp|.*\.cxx)")
+  grep $* $(find . -regextype gnu-awk -regex "(.*\.cc|.*\.h|.*\.cpp|.*\.hpp|.*\.cxx|.*\.c)")
 }
+
+export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+set -o vi
