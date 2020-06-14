@@ -1,5 +1,5 @@
 set nocompatible
-filetype off
+"filetype off " Vundle requires it ?
 
 if $USER_VIM_ENABLE_PLUGINS == 'Y'
   set rtp+=~/.vim/bundle/Vundle.vim
@@ -95,7 +95,8 @@ if has('win32') || has('win64')
   set dir=%HOMEPATH%\vimtmp
   set belloff=all " dont beep
 elseif has('unix')
-  set dir=~/.vimtmp
+  set dir=~/.cache/.vimtmp
+  set viminfo+=n~/.vim/viminfo
 endif
 
 set completeopt=menuone,preview,noselect
