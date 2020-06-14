@@ -34,27 +34,27 @@ elseif has('win32') || has('win64')
 endif
 
 if has('gui_running')
-	" removes off tool and menu bars
-	set guioptions -=m
-	set guioptions -=T
+  " removes off tool and menu bars
+  set guioptions -=m
+  set guioptions -=T
 
-	" removes scrolls
-	set guioptions -=r
-	set guioptions -=L
+  " removes scrolls
+  set guioptions -=r
+  set guioptions -=L
 
-	" sets initial size of gvim window
-	set lines=25 columns=95
+  " sets initial size of gvim window
+  set lines=25 columns=95
 else 
-	set bg=dark
+  set bg=dark
 endif
 
 set number
 map <F2> :set relativenumber!<CR>
 
 if has('win32') || has('win64')
-	set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT
+  set guifont=IBM_Plex_Mono_Text:h9:cANSI:qDRAFT
 elseif has('unix')
-	set guifont=Ubuntu\ Mono\ 8
+  set guifont=Ubuntu\ Mono\ 8
 endif
 
 set encoding=utf-8
@@ -79,8 +79,8 @@ nnoremap <C-Down> 10gj
 nnoremap <C-K> 10gk
 nnoremap <C-J> 10gj
 
-inoremap <C-k> <C-o>gk
-inoremap <C-j> <C-o>gj
+inoremap <C-k> 10gk
+inoremap <C-j> 10gj
 
 inoremap <C-Up> <C-o>10gk
 inoremap <C-Down> <C-o>10gj
@@ -92,10 +92,10 @@ highlight iCursor guifg=steelblue guibg=darkgrey
 
 set swapfile
 if has('win32') || has('win64')
-	set dir=%HOMEPATH%\vimtmp
-	set belloff=all " dont beep
+  set dir=%HOMEPATH%\vimtmp
+  set belloff=all " dont beep
 elseif has('unix')
-	set dir=~/.vimtmp
+  set dir=~/.vimtmp
 endif
 
 set completeopt=menuone,preview,noselect
@@ -110,16 +110,16 @@ set tags=./tags;
 set path=.;
 
 function! Gentags()
-	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+  !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-map ff :%!clang-format<CR>
+map ff :py3f /usr/share/clang/clang-format.py<cr>
 
 " YCM
 let g:ycm_auto_trigger = 0
-let g:ycm_use_clangd = 0
-"let g:ycm_clangd_uses_ycmd_caching = 0
-"let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_use_clangd = 1
+let g:ycm_clangd_uses_ycmd_caching = 0
+let g:ycm_clangd_binary_path = exepath("clangd")
 nnoremap ygi :YcmCompleter GoToInclude<CR>
 nnoremap ygf :YcmCompleter FixIt<CR>
 nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
