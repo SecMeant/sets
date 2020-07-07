@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+case "$1" in
+	toggle) pactl set-sink-mute 0 toggle ;;
+	mute) amixer sset Master mute ;;
+	up) amixer sset Master 5%+ ;;
+	down) amixer sset Master 5%- ;;
+esac
+
+$HOME/.local/bin/upvolstatus
