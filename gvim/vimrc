@@ -127,7 +127,6 @@ nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ygt :YcmCompleter GetType<CR>
 nnoremap ygr :YcmCompleter GoToReferences<CR>
 
-
 let g:asyncrun_open = 0
 
 set list lcs=trail:\·,tab:\|\ 
@@ -153,3 +152,6 @@ function StyleTabs()
   set noexpandtab
   set tabstop=8
 endfunction
+
+set nofixendofline
+set noeol
