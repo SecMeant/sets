@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+while :
+do
+	volume_line=$(</tmp/sound_changed_event)
+	date=$(date "+%d %b %Y %H:%M")
+	echo -n "$volume_line | $date"
+
+	inotifywait -e modify -t 30 /tmp/sound_changed_event -o /dev/null
+done
