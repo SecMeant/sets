@@ -12,7 +12,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -49,7 +49,7 @@ env:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -109,7 +109,7 @@ font:
     family: UbuntuMono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Bold
 
   # Bold font face
   #bold:
@@ -193,7 +193,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
+    black:   '0x717171'
     red:     '0xe50000'
     green:   '0x00e500'
     yellow:  '0xe5e500'
@@ -203,7 +203,7 @@ colors:
     white:   '0xe5e5e5'
 
   bright:
-    black:   '0x000000'
+    black:   '0x919191'
     red:     '0xff0000'
     green:   '0x00ff00'
     yellow:  '0xffff00'
@@ -213,7 +213,7 @@ colors:
     white:   '0xffffff'
 
   dim:
-    black:   '0x000000'
+    black:   '0x515151'
     red:     '0xa50000'
     green:   '0x00a500'
     yellow:  '0xa5a500'
@@ -252,7 +252,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 1.0
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
