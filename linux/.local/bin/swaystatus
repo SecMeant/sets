@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+# Just to refresh the status bar at start
+$HOME/.local/bin/upvolstatus
+
 while :
 do
 	volume_line=$(</tmp/sound_changed_event)

@@ -1,7 +1,12 @@
 #!/usr/bin/sh
 
+sinkinfo=$(pactl info)
+[[ "$sinkinfo" =~ Default\ Sink:\ ([a-zA-Z0-9._-]*) ]]
+
+defsink=${BASH_REMATCH[1]}
+
 case "$1" in
-	toggle) pactl set-sink-mute 0 toggle ;;
+	toggle) pactl set-sink-mute $defsink toggle ;;
 	mute) amixer sset Master mute ;;
 	up) amixer sset Master 5%+ ;;
 	down) amixer sset Master 5%- ;;
