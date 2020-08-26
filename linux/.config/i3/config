@@ -181,7 +181,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	position top
-        status_command /home/holz/.local/bin/swaystatus
+        status_command $HOME/.local/bin/swaystatus
 }
 
 # Colors
