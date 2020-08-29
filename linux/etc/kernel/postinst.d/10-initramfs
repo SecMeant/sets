@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+echo "mkinitcpio @@@@"
+echo "Got args: $@"
+
+dkms install --no-depmod -m nvidia -v 450.57 -k $1
+mkinitcpio --generate /boot/initramfs-$1.img --kernel $1
