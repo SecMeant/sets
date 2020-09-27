@@ -8,6 +8,7 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/nerdtree'
   Plugin 'rust-lang/rust.vim'
+  Plugin 'junegunn/fzf'
 
   call vundle#end()
   filetype plugin indent on
