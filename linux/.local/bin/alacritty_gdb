@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+import sys
+import subprocess
+
+if __name__ == '__main__':
+    subprocess.call(['/usr/bin/alacritty', '-e', *(sys.argv[1].split())])
+
