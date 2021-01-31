@@ -59,6 +59,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias iv=sxiv
+alias vi="vim"
 alias viv="USER_VIM_ENABLE_PLUGINS=Y vim"
 alias gviv="USER_VIM_ENABLE_PLUGINS=Y gvim"
 
