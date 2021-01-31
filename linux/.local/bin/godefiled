@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+
+[ -z "$DEFILED_SSH_PORT" ] && { echo "\$DEFILED_SSH_PORT var is not set. Did u initialized env correctly?"; exit 1; }
+
+ssh -p $DEFILED_SSH_PORT defil3d@localhost
