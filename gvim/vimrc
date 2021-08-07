@@ -128,20 +128,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap rn <Plug>(coc-rename)
 nmap gf  <Plug>(coc-fix-current)
 map ff <Plug>(coc-format-selected)
-
-"nnoremap ygi :YcmCompleter GoToInclude<CR>
-"nnoremap ygf :YcmCompleter FixIt<CR>
-"nnoremap ygD :YcmCompleter GoToDeclaration<CR>
-"nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"nnoremap ygt :YcmCompleter GetType<CR>
-"nnoremap ygr :YcmCompleter GoToReferences<CR>
-"nnoremap ygs :YcmCompleter GoToSymbol 
-"nnoremap ydoc :YcmCompleter GetDoc<CR>
-"nnoremap yref :YcmCompleter RefactorRename 
-"noremap yren :py3f /usr/share/clang/clang-rename.py<CR>
 
 nnoremap <c-p> :FZF<CR>
 let g:fzf_layout = {'down' : '25%'}
