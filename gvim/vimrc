@@ -1,20 +1,19 @@
 set nocompatible
-"filetype off " Vundle requires it ?
 
 if $USER_VIM_ENABLE_PLUGINS == 'Y'
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+  call plug#begin('~/.vim/plugged')
 
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'rust-lang/rust.vim'
-  Plugin 'junegunn/fzf'
+  Plug 'preservim/nerdtree'
+  Plug 'rust-lang/rust.vim'
+  Plug 'junegunn/fzf'
+  Plug 'lervag/vimtex'
+  Plug 'tyru/skk.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-  call vundle#end()
-  filetype plugin indent on
+  let g:tex_flavor = 'latex'
 
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
+  call plug#end()
 endif
 
 if $USER_VIM_LOAD_LOCAL_CFG == 'Y'
@@ -24,6 +23,7 @@ else
 endif
 
 filetype plugin on
+filetype plugin indent on
 syntax on
 
 colorscheme goodwolf
@@ -106,7 +106,7 @@ elseif has('unix')
 
 endif
 
-set completeopt=menuone,preview,noselect
+set completeopt=menuone,noselect
 
 "autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 "autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
@@ -121,26 +121,30 @@ function! Gentags()
   !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 endfunction
 
-map ff :py3f /usr/share/clang/clang-format.py<cr>
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-@> coc#refresh()
 
-" YCM
-let g:ycm_auto_trigger = 0
-let g:ycm_use_clangd = 1
-let g:ycm_clangd_uses_ycmd_caching = 0
-let g:ycm_clangd_binary_path = exepath("clangd")
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap rn <Plug>(coc-rename)
+nmap gf  <Plug>(coc-fix-current)
+map ff <Plug>(coc-format-selected)
 
-nnoremap ygi :YcmCompleter GoToInclude<CR>
-nnoremap ygf :YcmCompleter FixIt<CR>
-nnoremap ygD :YcmCompleter GoToDeclaration<CR>
-nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap ygt :YcmCompleter GetType<CR>
-nnoremap ygr :YcmCompleter GoToReferences<CR>
-nnoremap ygs :YcmCompleter GoToSymbol 
-nnoremap ydoc :YcmCompleter GetDoc<CR>
-nnoremap yref :YcmCompleter RefactorRename 
-noremap yren :py3f /usr/share/clang/clang-rename.py<CR>
+"nnoremap ygi :YcmCompleter GoToInclude<CR>
+"nnoremap ygf :YcmCompleter FixIt<CR>
+"nnoremap ygD :YcmCompleter GoToDeclaration<CR>
+"nnoremap ygd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap ygt :YcmCompleter GetType<CR>
+"nnoremap ygr :YcmCompleter GoToReferences<CR>
+"nnoremap ygs :YcmCompleter GoToSymbol 
+"nnoremap ydoc :YcmCompleter GetDoc<CR>
+"nnoremap yref :YcmCompleter RefactorRename 
+"noremap yren :py3f /usr/share/clang/clang-rename.py<CR>
 
 nnoremap <c-p> :FZF<CR>
+let g:fzf_layout = {'down' : '25%'}
 
 " Search inside braces
 nnoremap sib vi}<Esc>/\%V
@@ -173,3 +177,6 @@ endfunction
 
 set nofixendofline
 set noeol
+
+nnoremap HH :match StatusLineTerm /<C-R><C-W>/<CR>
+nnoremap nh :match StatusLineTerm //<CR>
