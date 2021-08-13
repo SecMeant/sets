@@ -130,6 +130,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap gs :CocList -I symbols<cr>
 nmap rn <Plug>(coc-rename)
 nmap gf  <Plug>(coc-fix-current)
 map ff <Plug>(coc-format-selected)
