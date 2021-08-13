@@ -90,6 +90,15 @@ else
 	echo "SIZE: $(numfmt --to=iec-i --suffix=B ${total_size})"
 fi
 
+while true; do
+	read -p "Do you want to continue? (y/n): " yn
+	case $yn in
+		[Yy]* ) make install; break;;
+		[Nn]* ) exit;;
+		* ) echo "Please answer y or n.";;
+	esac
+done
+
 echo "Copying and compressing. . . "
 
 # This probraby has to be the first appendted option
