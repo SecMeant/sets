@@ -50,7 +50,8 @@ cp ${bpexclude_user} ${bpexclude} 2>/dev/null
 echo -n "Searching for mountpoits to exclude . . . "
 
 bptarget_escaped=$(echo ${bptarget} | sed 's/\//\\\//g;s/ /\\ /g')
-cut -f 2 -d " " /proc/mounts | sed "s/$/\/\*/; /${bptarget_escaped}/ !d" >> ${bpexclude}
+echo -ne "\n" >> ${bpexclude} # Make sure bpexclude file ends with newline
+cut -f 2 -d " " /proc/mounts | sed "s/^${bptarget_escaped}$//g;s/$/\/\*/; /${bptarget_escaped}/ !d" >> ${bpexclude}
 
 echo -e "${color_done}DONE${color_default}"
 
