@@ -170,5 +170,9 @@ endfunction
 set nofixendofline
 set noeol
 
-nnoremap HH :match StatusLineTerm /<C-R><C-W>/<CR>
-nnoremap nh :match StatusLineTerm //<CR>
+" F10 will echo information about highlight groups of the word under cursor
+" They are used for sytnax highlighting and this feature is usefull when
+" debugging colors.
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
