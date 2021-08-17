@@ -19,11 +19,11 @@ let g:colors_name = "archman"
 
 hi Cursor ctermfg=24 ctermbg=231 cterm=NONE guifg=#7F4EFE guibg=#ffffff gui=NONE
 hi Visual ctermfg=NONE ctermbg=241 cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi CursorLine ctermbg=234 cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi CursorColumn ctermbg=234 cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi CursorLine ctermbg=235 cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi CursorColumn ctermbg=241 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi ColorColumn ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#3d3f49 gui=NONE
-hi LineNr ctermfg=234 ctermbg=NONE cterm=NONE guifg=#76A9DB guibg=NONE gui=NONE
-hi VertSplit ctermfg=234 ctermbg=0 cterm=bold guifg=#3c464f guibg=NONE gui=bold
+hi LineNr ctermfg=241 ctermbg=NONE cterm=NONE guifg=#76A9DB guibg=NONE gui=NONE
+hi VertSplit ctermfg=241 ctermbg=0 cterm=bold guifg=#3c464f guibg=NONE gui=bold
 hi MatchParen ctermfg=96 ctermbg=NONE cterm=underline guifg=#FF4143 guibg=NONE gui=underline
 hi StatusLine ctermfg=231 ctermbg=236 cterm=bold guifg=#FFFFFF guibg=#64666d gui=bold
 hi StatusLineNC ctermfg=231 ctermbg=236 cterm=NONE guifg=#FFFFFF guibg=#64666d gui=NONE
@@ -31,7 +31,7 @@ hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi IncSearch ctermfg=24 ctermbg=178 cterm=NONE guifg=NONE guibg=#FFCC4B gui=NONE
 hi Search ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
-hi Directory ctermfg=56 ctermbg=NONE cterm=NONE guifg=#7F4EFE guibg=NONE gui=NONE
+hi Directory ctermfg=13 ctermbg=NONE cterm=NONE guifg=#7F4EFE guibg=NONE gui=NONE
 hi Folded ctermfg=24 ctermbg=235 cterm=NONE guifg=#7F4EFE guibg=NONE gui=NONE
 hi SignColumn ctermfg=246 ctermbg=235 cterm=NONE guifg=#909194 guibg=NONE gui=NONE
 hi FoldColmun ctermfg=246 ctermbg=235 cterm=NONE guifg=#909194 guibg=NONE gui=NONE
@@ -56,10 +56,10 @@ hi Label ctermfg=178 ctermbg=NONE cterm=NONE guifg=#FFCC4B guibg=NONE gui=NONE
 hi NonText ctermfg=231 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
 hi Number ctermfg=13 ctermbg=NONE cterm=NONE guifg=#7F4EFE guibg=NONE gui=NONE
 hi Operator ctermfg=96 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
-hi PreProc ctermfg=96 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
+hi PreProc ctermfg=135 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
 hi Special ctermfg=231 ctermbg=NONE cterm=NONE guifg=#FFFFFF guibg=NONE gui=NONE
 hi SpecialKey ctermfg=231 ctermbg=235 cterm=NONE guifg=#525563 guibg=NONE gui=NONE
-hi Statement ctermfg=96 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
+hi Statement ctermfg=135 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
 hi StorageClass ctermfg=37 ctermbg=NONE cterm=NONE guifg=#3DE163 guibg=NONE gui=italic
 hi String ctermfg=178 ctermbg=NONE cterm=NONE guifg=#FFCC4B guibg=NONE gui=NONE
 hi Tag ctermfg=96 ctermbg=NONE cterm=NONE guifg=#FF4143 guibg=NONE gui=NONE
