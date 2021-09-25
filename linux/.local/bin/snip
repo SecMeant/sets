@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scrot -s $@ ~/.cache/lastsnip.jpg && xdg-open ~/.cache/lastsnip.jpg
