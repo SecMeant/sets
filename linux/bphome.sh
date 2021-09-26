@@ -50,8 +50,7 @@ cp ${bpexclude_user} ${bpexclude} 2>/dev/null
 echo -n "Searching for mountpoits to exclude . . . "
 
 bptarget_escaped=$(echo ${bptarget} | sed 's/\//\\\//g;s/ /\\ /g')
-echo -ne "\n" >> ${bpexclude} # Make sure bpexclude file ends with newline
-cut -f 2 -d " " /proc/mounts | sed "s/^${bptarget_escaped}$//g;s/$/\/\*/; /${bptarget_escaped}/ !d" >> ${bpexclude}
+cut -f 2 -d " " /proc/mounts | sed "/${bptarget_escaped}/ !d; /^${bptarget_escaped}\/*$/ d; s/$/\/\*/" >> ${bpexclude}
 
 echo -e "${color_done}DONE${color_default}"
 
@@ -90,15 +89,6 @@ else
 	echo "SIZE: $(numfmt --to=iec-i --suffix=B ${total_size})"
 fi
 
-while true; do
-	read -p "Do you want to continue? (y/n): " yn
-	case $yn in
-		[Yy]* ) make install; break;;
-		[Nn]* ) exit;;
-		* ) echo "Please answer y or n.";;
-	esac
-done
-
 echo "Copying and compressing. . . "
 
 # This probraby has to be the first appendted option
@@ -121,11 +111,11 @@ done
 tar $taropt -cp --record-size=1K --checkpoint="${checkpoint}" --checkpoint-action="ttyout=#" -f - ${bptarget} 2>/dev/null | gzip > "${tmpbpname}"
 errc=$?
 if [ "${errc}" != "0" ]; then
-	echo "Error: tar exited with code ${errc}";
+	echo -e "\nError: tar exited with code ${errc}";
 	exit $?;
 fi
 
-echo -e "${color_done}DONE${color_default}"
+echo -e "] ${color_done}DONE${color_default}"
 
 echo -n "Moving backup file to current directory . . . "
 mv ${tmpbpname} ${bpname}
