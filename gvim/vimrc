@@ -3,7 +3,7 @@ set nocompatible
 if $USER_VIM_ENABLE_PLUGINS == 'Y'
   call plug#begin('~/.vim/plugged')
 
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'branch': '6.0.0' }
   Plug 'rust-lang/rust.vim'
   Plug 'junegunn/fzf'
   Plug 'lervag/vimtex'
