@@ -10,6 +10,7 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   Plug 'tyru/skk.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'rking/ag.vim'
 
   let g:tex_flavor = 'latex'
 
@@ -175,5 +176,25 @@ set noeol
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" For navigating in quickfix window:
+" Ctrl + l will go to the next entry
+" Ctrl + h go to the previous
+nnoremap <C-l> :cn<CR>
+nnoremap <C-h> :cp<CR>
+
+" Ctrl + s will silver search for word under the cursor
+nnoremap <C-s> :call SavePosAndCallAgOnCurrentWord()<CR>
+
+function! SavePosAndCallAgOnCurrentWord()
+  " Save current position to a register
+  execute "normal! ma"
+
+  " Execute Ag
+  execute "normal! :Ag \<C-r>\<C-w>\<CR>"
+
+  " After the search user can return by jump to mark
+  " stored in a register.
+endfunction
 
 cnoreabbrev vgrep AsyncRun grep -rn
