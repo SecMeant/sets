@@ -17,9 +17,9 @@ username=$(whoami)
 bpname="bph$(cat /etc/hostname)$(date +%d%m%Y)${$}.tar.gz"
 tmpbpname="/tmp/${bpname}"
 bpexclude_user="/home/${username}/.bpexclude"
-bpexclude="/tmp/bpexclude"
-bprepos="/home/${username}/repos"
-repofinder="/home/${username}/getrepos.sh"
+bpexclude=`mktemp`
+bprepos="/tmp/bphome_repos"
+repofinder="getrepos.sh"
 color_default="\033[0m"
 color_done="\033[0;32m"
 color_warn="\033[33m"
@@ -43,8 +43,7 @@ if [ "${distro}" == "Arch" ]; then
 	comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base-devel | sort) > ~/.packages
 fi
 
-trap "rm -f ${bpexclude} ${tmpbpname}"
-truncate ${bpexclude} --size 0
+rm -f ${bpexclude}
 cp ${bpexclude_user} ${bpexclude} 2>/dev/null
 
 echo -n "Searching for mountpoits to exclude . . . "
@@ -56,14 +55,21 @@ echo -e "${color_done}DONE${color_default}"
 
 echo -n "Searching for git repositories to exclude . . . "
 
-if [ -f "${repofinder}" ]; then
+# Export default excludes
+echo -e '/dev/*' >> "${bpexclude}"
+echo -e '/sys/*' >> "${bpexclude}"
+echo -e '/proc/*' >> "${bpexclude}"
+echo -e '/run/*' >> "${bpexclude}"
+
+if command -v "${repofinder}"; then
 	"${repofinder}" > "${bprepos}"
 	sed "s/\t.*$//;s/$/\/\*/;" "${bprepos}" >> "${bpexclude}"
 	echo -e "${color_done}DONE${color_default}"
 	echo -e "Found repos:"
 	sed "s/^/\t/" ${bprepos}
+	rm ${bprepos}
 else
-	echo -e "${color_warn}WARNING: ./getrepos.sh not found. Unable to search for repositories.${color_default}"
+	echo -e "${color_warn}WARNING: getrepos.sh not found. Unable to search for repositories.${color_default}"
 fi
 
 echo -e "Excluded dirs:"
@@ -117,8 +123,10 @@ fi
 
 echo -e "] ${color_done}DONE${color_default}"
 
-echo -n "Moving backup file to current directory . . . "
-mv ${tmpbpname} ${bpname}
+if [ `stat -c %i "${tmpbpname}"` -ne `stat -c %i "${bpname}"` ]; then
+	echo -n "Moving backup file to current directory . . . "
+	mv ${tmpbpname} ${bpname}
+fi
 
 errc=$?
 if [ "${errc}" != "0" ]; then
