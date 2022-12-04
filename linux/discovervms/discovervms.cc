@@ -35,7 +35,7 @@ static machine_info MACHINES[] = {
 		.mac = "56:d3:f1:7e:d0:00",
 	},
 	[1] = {
-		.name = "defiled2",
+		.name = "defiled",
 		.ip = "",
 		.mac = "56:54:d3:f1:7e:d0",
 	},
@@ -309,7 +309,7 @@ int main(int argc, char **argv)
 			if (mac == m.mac) {
 				strncpy(m.ip, ip.data(), ip.size());
 				m.ip[ip.size()] = 0;
-				printf("[+] Found machine %s:\n\tIP: %s\n\tMAC: %s\n", m.name, m.ip, m.mac);
+				printf("[+] Found machine %s:\n\tIP: %s\n\tMAC: %s\n\texport %s=%s\n", m.name, m.ip, m.mac, m.name, m.ip);
 			}
 		}
 	}
