@@ -54,6 +54,11 @@ static machine_info MACHINES[] = {
 		.ip = "",
 		.mac = "d8:5e:d3:0e:1b:1b",
 	},
+	[5] = {
+		.name = "lilo",
+		.ip = "",
+		.mac = "56:54:11:10:11:10",
+	},
 };
 
 struct process_info
