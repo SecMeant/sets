@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Make sure we are running on REIGN
+hostname=$(cat /etc/hostname)
+[[ "$hostname" != "REIGN" ]] && echo "This script is for REIGN only!" && exit 1
+
+# Make sure we are running as root
+[[ $EUID -ne 0 ]] && echo "Must be run as root" && exit 1
+
+# Disable CPUs 1-20
+# We will run only on 0, 21-23
+for i in `seq 1 20`; do echo 0 > /sys/devices/system/cpu/cpu$i/online; done
+
+#for i in 0 $(seq 21 23); do
+#  echo powersave > /sys/devices/system/cpu/cpufreq/policy$i/scaling_governor
+#  echo power > /sys/devices/system/cpu/cpufreq/policy$i/energy_performance_preference
+#done
+#
+#cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_governors
+#cat /sys/devices/system/cpu/cpufreq/policy0/energy_performance_available_preferences
+
