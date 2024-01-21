@@ -1,0 +1,45 @@
+#!/usr/bin/sh
+
+function  get_battery_info()
+{
+	battery="/sys/class/power_supply/BAT0/"
+	[[ ! -d "$battery" ]] && echo -n "No battery?" && exit;
+
+	info=''
+	now=$(expr $(<"$battery/charge_now") \* 100 / $(<"$battery/charge_full_design"))
+
+	state=$(cat "$battery/status")
+	case "$state" in
+		Full)
+		state="🔋"
+		;;
+
+		Discharging)
+		state="♻️"
+		;;
+
+		Charging|Unknown)
+		state="⚡"
+		;;
+
+		Not\ charging)
+		state=""
+		;;
+
+	esac
+
+	echo -n "$state$now%"
+}
+
+# Just to refresh the status bar at start
+$HOME/.local/bin/upvolstatus
+
+while :
+do
+	volume_line=$(</tmp/sound_changed_event)
+	battery_level=$(get_battery_info)
+	date=$(date "+%d %b %Y %H:%M")
+	echo -n "$battery_level | $volume_line | $date"
+
+	inotifywait -e modify -t 30 /tmp/sound_changed_event -o /dev/null
+done
