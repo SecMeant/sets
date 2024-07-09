@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Function to generate a bright color based on hostname
+generate_bright_color() {
+    hostname=$(hostname)
+    hash=$(echo -n $hostname | md5sum | cut -c1-6)
+
+    # Extract the red, green, and blue components from the hash
+    r=$(echo $hash | cut -c1-2)
+    g=$(echo $hash | cut -c3-4)
+    b=$(echo $hash | cut -c5-6)
+
+    # Convert to decimal and ensure they are bright enough
+    r=$((0x$r + 128))
+    g=$((0x$g + 128))
+    b=$((0x$b + 128))
+
+    # Clamp values to the maximum of 255
+    r=$(($r > 255 ? 255 : $r))
+    g=$(($g > 255 ? 255 : $g))
+    b=$(($b > 255 ? 255 : $b))
+
+    # Convert back to hex
+    r=$(printf "%02x" $r)
+    g=$(printf "%02x" $g)
+    b=$(printf "%02x" $b)
+
+    echo "#$r$g$b"
+}
+
+# Generate the color and store it in a variable
+color=$(generate_bright_color)
+echo $color
+
