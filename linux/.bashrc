@@ -65,3 +65,5 @@ alias gviv="USER_VIM_ENABLE_PLUGINS=Y gvim"
 
 export DEFILED_SSH_PORT=10022
 
+set -o ignoreeof
+
