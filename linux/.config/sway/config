@@ -75,6 +75,8 @@ exec swayidle -w \
 
 input type:touchpad {
 	tap enabled
+	drag enabled
+	drag_lock disabled
 }
 
 input type:keyboard {
