@@ -77,6 +77,10 @@ input type:touchpad {
 	tap enabled
 }
 
+input type:keyboard {
+	xkb_layout pl
+}
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.local/bin/chvol up
 bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.local/bin/chvol down
