@@ -1,0 +1,17 @@
+Cmnd_Alias TURBOSTAT_HOLZ = /usr/bin/turbostat --show * --hide * -i *, \
+                               /usr/bin/turbostat --show * -i * --hide *, \
+                               /usr/bin/turbostat -i * --show * --hide *, \
+                               /usr/bin/turbostat --hide * --show * -i *, \
+                               /usr/bin/turbostat --hide * -i * --show *, \
+                               /usr/bin/turbostat -i * --hide * --show *, \
+                               /usr/bin/turbostat --show * --hide *, \
+                               /usr/bin/turbostat --show * -i *, \
+                               /usr/bin/turbostat --hide * --show *, \
+                               /usr/bin/turbostat --hide * -i *, \
+                               /usr/bin/turbostat -i * --show *, \
+                               /usr/bin/turbostat -i * --hide *, \
+                               /usr/bin/turbostat --show *, \
+                               /usr/bin/turbostat --hide *, \
+                               /usr/bin/turbostat -i *
+
+holz ALL=(ALL) NOPASSWD: TURBOSTAT_HOLZ
