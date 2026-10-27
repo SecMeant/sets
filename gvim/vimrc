@@ -6,8 +6,6 @@ if $USER_VIM_ENABLE_PLUGINS == 'Y'
   Plug 'preservim/nerdtree', { 'branch': '6.0.0' }
   Plug 'rust-lang/rust.vim'
   Plug 'junegunn/fzf'
-  Plug 'lervag/vimtex'
-  Plug 'tyru/skk.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'rking/ag.vim'
